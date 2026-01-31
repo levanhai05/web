@@ -37,7 +37,7 @@ public class StudentController {
         return "Deleted student with ID = " + id;
     }
 
-    // 3. Tim kiếm sinh viên theo tên
+    // 3. Tìm kiếm sinh viên theo tên
     @GetMapping("/search")
     public List<Student> searchByName(@RequestParam String name) {
         return service.findByName(name);
@@ -57,20 +57,20 @@ public class StudentController {
 
     // 6. API cập nhật sinh viên
     @PutMapping("/{id}")
-public Student updateStudent(
-        @PathVariable Integer id,
-        @RequestBody Student student) {
+    public Student updateStudent(
+            @PathVariable Integer id,
+            @RequestBody Student student) {
 
-    Student existing = service.getStudentById(id);
-    if (existing == null) {
-        return null;
+        Student existing = service.getStudentById(id);
+        if (existing == null) {
+            return null;
+        }
+
+        existing.setName(student.getName());
+        existing.setEmail(student.getEmail());
+        existing.setAge(student.getAge());
+        existing.setGender(student.getGender());
+
+        return service.addStudent(existing);
     }
-
-    existing.setName(student.getName());
-    existing.setEmail(student.getEmail());
-
-    return service.addStudent(existing);
-}
-
-
 }
