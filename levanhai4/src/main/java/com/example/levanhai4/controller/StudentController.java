@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,44 +19,31 @@ import com.example.levanhai4.service.StudentService;
 
 @RestController
 @RequestMapping("/api/students")
-@CrossOrigin // cho phép frontend gọi
+@CrossOrigin(origins = "*") // cho phép frontend gọi (local + deploy)
 public class StudentController {
 
     @Autowired
     private StudentService service;
 
-    // 1. API thêm sinh viên
-    @PostMapping
-    public Student addStudent(@RequestBody Student student) {
-        return service.addStudent(student);
-    }
-
-    // 2. API xóa sinh viên
-    @PostMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable Integer id) {
-        service.deleteStudent(id);
-        return "Deleted student with ID = " + id;
-    }
-
-    // 3. Tìm kiếm sinh viên theo tên
-    @GetMapping("/search")
-    public List<Student> searchByName(@RequestParam String name) {
-        return service.findByName(name);
-    }
-
-    // 4. API lấy sinh viên theo ID
-    @GetMapping("/{id}")
-    public Student getStudentById(@PathVariable Integer id) {
-        return service.getStudentById(id);
-    }
-
-    // 5. API lấy danh sách sinh viên
+    // 1. Lấy danh sách sinh viên
     @GetMapping
     public List<Student> getAllStudents() {
         return service.getAll();
     }
 
-    // 6. API cập nhật sinh viên
+    // 2. Lấy sinh viên theo ID
+    @GetMapping("/{id}")
+    public Student getStudentById(@PathVariable Integer id) {
+        return service.getStudentById(id);
+    }
+
+    // 3. Thêm sinh viên
+    @PostMapping
+    public Student addStudent(@RequestBody Student student) {
+        return service.addStudent(student);
+    }
+
+    // 4. Cập nhật sinh viên
     @PutMapping("/{id}")
     public Student updateStudent(
             @PathVariable Integer id,
@@ -72,5 +60,17 @@ public class StudentController {
         existing.setGender(student.getGender());
 
         return service.addStudent(existing);
+    }
+
+    // 5. Xóa sinh viên (CHUẨN REST)
+    @DeleteMapping("/{id}")
+    public void deleteStudent(@PathVariable Integer id) {
+        service.deleteStudent(id);
+    }
+
+    // 6. Tìm kiếm sinh viên theo tên
+    @GetMapping("/search")
+    public List<Student> searchByName(@RequestParam String name) {
+        return service.findByName(name);
     }
 }

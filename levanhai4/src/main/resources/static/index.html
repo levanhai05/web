@@ -139,7 +139,7 @@
 </div>
 
 <script>
-const API = "http://localhost:8080/api/students";
+const API = "/api/students";
 
 function loadStudents() {
     fetch(API)
@@ -213,9 +213,10 @@ function editStudent(id, name, email, age, gender) {
 
 function deleteStudent(id) {
     if (!confirm("Bạn có chắc muốn xóa?")) return;
-    fetch(`${API}/delete/${id}`, { method: "POST" })
+    fetch(`${API}/${id}`, { method: "DELETE" })
         .then(() => loadStudents());
 }
+
 
 function searchStudent() {
     const name = document.getElementById("search").value;
