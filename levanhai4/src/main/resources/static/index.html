@@ -78,7 +78,33 @@
 <body class="container py-5">
 
 <div class="app-card">
+     <h4 id="formTitle" class="mb-3">➕ Thêm sinh viên</h4>
+<input type="hidden" id="id">
 
+    <div class="row g-3">
+        <div class="col-md-6">
+            <input id="name" class="form-control" placeholder="Tên sinh viên">
+        </div>
+        <div class="col-md-6">
+            <input id="email" class="form-control" placeholder="Email">
+        </div>
+        <div class="col-md-6">
+            <input id="age" type="number" class="form-control" placeholder="Tuổi">
+        </div>
+        <div class="col-md-6">
+            <select id="gender" class="form-select">
+                <option value="">-- Chọn giới tính --</option>
+                <option value="Nam">Nam</option>
+                <option value="Nữ">Nữ</option>
+                <option value="Khác">Khác</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="mt-4 text-end">
+        <button class="btn btn-primary me-2" onclick="saveStudent()">💾 Lưu</button>
+        <button class="btn btn-secondary" onclick="resetForm()">↩ Hủy</button>
+    </div>
     <h3 class="mb-4 text-center">📚 QUẢN LÝ SINH VIÊN</h3>
 
     <!-- Tìm kiếm -->
@@ -106,35 +132,8 @@
 
     <div class="divider"></div>
 
-    <h4 id="formTitle" class="mb-3">➕ Thêm sinh viên</h4>
+   
 
-    <!-- Form -->
-    <input type="hidden" id="id">
-
-    <div class="row g-3">
-        <div class="col-md-6">
-            <input id="name" class="form-control" placeholder="Tên sinh viên">
-        </div>
-        <div class="col-md-6">
-            <input id="email" class="form-control" placeholder="Email">
-        </div>
-        <div class="col-md-6">
-            <input id="age" type="number" class="form-control" placeholder="Tuổi">
-        </div>
-        <div class="col-md-6">
-            <select id="gender" class="form-select">
-                <option value="">-- Chọn giới tính --</option>
-                <option value="Nam">Nam</option>
-                <option value="Nữ">Nữ</option>
-                <option value="Khác">Khác</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="mt-4 text-end">
-        <button class="btn btn-primary me-2" onclick="saveStudent()">💾 Lưu</button>
-        <button class="btn btn-secondary" onclick="resetForm()">↩ Hủy</button>
-    </div>
 
 </div>
 
